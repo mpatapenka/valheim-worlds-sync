@@ -1,0 +1,9 @@
+# Exclude everything
+*
+
+# Include infrastructure files
+!.gitignore
+!README.md
+
+# Include worlds to sync
+!testworld.*

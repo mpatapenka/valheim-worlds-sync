@@ -4,6 +4,7 @@
 # Include infrastructure files
 !.gitignore
 !README.md
+!install.bat
 
 # Include worlds to sync
-!testworld.*
+!GACHIMUCHI.*

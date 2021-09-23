@@ -18,24 +18,21 @@ rem Setup worlds
 cd /d %ValheimWorlds%
 If Not Exist ".git" (
     git clone https://github.com/mpatapenka/valheim-worlds-sync.git
-    xcopy /Y valheim-worlds-sync\ . /E/H
+    xcopy /Y valheim-worlds-sync . /E/H
     rmdir valheim-worlds-sync /Q/S
 )
 
 rem Setup distrib
-If Not Exist %ValheimHostScript% (
-    (
-        echo @Echo Off
-        echo cd /d %ValheimWorlds%
-        echo git pull origin main
-        echo cd /d %ValheimDistrib%
-        echo rem echo start steam://rungameid/892970
-        echo valheim.exe
-        echo sleep 5000
-        echo cd /d %ValheimWorlds%
-        echo git add .
-        echo git commit -m "Automatic World Update"
-        echo git push origin main
-        echo set /p DUMMY=Hit ENTER to continue...
-    ) > %ValheimHostScript%
-)
+(
+    echo @Echo Off
+    echo cd /d %ValheimWorlds%
+    echo git pull origin main
+    echo cd /d %ValheimDistrib%
+    echo valheim.exe
+    echo timeout /t 3 /nobreak
+    echo cd /d %ValheimWorlds%
+    echo git add .
+    echo git commit -m "Automatic World Update"
+    echo git push origin main
+    echo set /p DUMMY=Hit ENTER to continue...
+) > %ValheimHostScript%
